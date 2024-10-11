@@ -72,9 +72,13 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+yarn.lock
 
 # eslint
 .eslintcache
 
 # vscode
 .vscode/*
+
+# NPM
+package-lock.json

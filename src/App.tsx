@@ -6,7 +6,8 @@ import { MMKV } from 'react-native-mmkv';
 
 import { ThemeProvider } from '@/theme';
 import ApplicationNavigator from '@/navigations/Application';
-
+import { store } from './store';
+import { Provider } from 'react-redux';
 import '@/translations';
 
 export const queryClient = new QueryClient();
@@ -18,7 +19,9 @@ function App() {
     <GestureHandlerRootView>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider storage={storage}>
-          <ApplicationNavigator />
+          <Provider store={store}>
+            <ApplicationNavigator />
+          </Provider>
         </ThemeProvider>
       </QueryClientProvider>
     </GestureHandlerRootView>

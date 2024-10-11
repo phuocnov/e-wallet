@@ -14,10 +14,19 @@ const Stack = createStackNavigator<RootStackParamList>();
 function ApplicationNavigator() {
   const { variant, navigationTheme } = useTheme();
 
+  // TODO: Implement authentication
+  const isSignedIn = false;
+  const isLoading = false;
+
+
+  if (isLoading) {
+    return null;
+  }
   return (
     <SafeAreaProvider>
       <NavigationContainer theme={navigationTheme}>
         <Stack.Navigator key={variant} screenOptions={{ headerShown: false }}>
+          { }
           <Stack.Screen component={Startup} name={Paths.Startup} />
           <Stack.Screen component={Example} name={Paths.Example} />
         </Stack.Navigator>

@@ -6,7 +6,7 @@ import { MMKV } from 'react-native-mmkv';
 
 import { ThemeProvider } from '@/theme';
 import ApplicationNavigator from '@/navigations/Application';
-import { store } from './store';
+import { store } from './reducers/store';
 import { Provider } from 'react-redux';
 import '@/translations';
 

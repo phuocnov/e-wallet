@@ -3,13 +3,15 @@ import type { RootScreenProps } from '@/navigations/types';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Text, View } from 'react-native';
+import { Button, Text, View } from 'react-native';
 
 import { useTheme } from '@/theme';
 import { Paths } from '@/navigations/paths';
 
 import { Brand } from '@/components/molecules';
 import { SafeScreen } from '@/components/templates';
+import { useAppDispatch } from '@/reducers/hooks';
+import { Login } from '@/reducers/authSlice';
 
 function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
   const { layout, gutters, fonts } = useTheme();
@@ -31,6 +33,8 @@ function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
     }
   }, [isSuccess, navigation]);
 
+  const dispatch = useAppDispatch();
+
   return (
     <SafeScreen>
       <View
@@ -41,13 +45,9 @@ function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
           layout.justifyCenter,
         ]}
       >
+        <Text>START UP</Text>
+        <Button onPress={() => dispatch(Login({ password: '123', phonenumber: '23' }))} title="Go to Example" />
         <Brand />
-        {isFetching && (
-          <ActivityIndicator size="large" style={[gutters.marginVertical_24]} />
-        )}
-        {isError && (
-          <Text style={[fonts.size_16, fonts.red500]}>{t('common_error')}</Text>
-        )}
       </View>
     </SafeScreen>
   );

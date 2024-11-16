@@ -68,29 +68,23 @@ export const Login =
     }
   };
 
-export const LoginWithBiometric = (dispatch: AppDispatch) => {
-  async () => {
+export const LoginWithBiometric = async (dispatch: AppDispatch) => {
+  const store = new MMKV();
+  const rnBiometrics = new ReactNativeBiometrics();
 
-    const store = new MMKV();
-    const rnBiometrics = new ReactNativeBiometrics();
-
-    dispatch(startLoading());
-    try {
-      if (!store.getAllKeys().includes('UserID')) {
-        dispatch(loginFail());
-        return;
-      }
-      const payload = `${store.getString('UserID')}`;
-      const { success, signature } = await rnBiometrics.createSignature({
-        promptMessage: 'Sign in',
-        payload,
-      });
-      if (!success) {
-        Alert.alert("Something go wrong")
-      };
-
-    } catch { }
+  dispatch(startLoading());
+  if (!store.getAllKeys().includes('UserID')) {
+    dispatch(loginFail());
+    return;
   }
+  const payload = `${store.getString('UserID')}`;
+  const { success, signature } = await rnBiometrics.createSignature({
+    promptMessage: 'Sign in',
+    payload,
+  });
+  if (!success) {
+    Alert.alert("Something go wrong")
+  };
 };
 
 export const CheckAuth = async (dispatch: AppDispatch) => {

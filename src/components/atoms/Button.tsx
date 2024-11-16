@@ -9,8 +9,8 @@ function Button(props: {
 }) {
   const style = StyleSheet.create({
     button: {
-      backgroundColor: '#223355',
-      borderRadius: 12,
+      backgroundColor: '#5F94E4',
+      borderRadius: 8,
       padding: 10,
       ...props.ButtonStyles,
     },

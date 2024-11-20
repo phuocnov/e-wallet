@@ -1,3 +1,4 @@
+
 import Button from '@/components/atoms/Button';
 import TextInput from '@/components/atoms/TextInput';
 import { SafeScreen } from '@/components/templates';
@@ -6,7 +7,7 @@ import useLoginForm from '@/hooks/forms/useLoginForm';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-function LoginScreen() {
+function SignUpScreen() {
   const { control, errors, handleSubmit, onSubmit } = useLoginForm();
   const { createSignature } = useBiometricAuth();
 
@@ -20,7 +21,7 @@ function LoginScreen() {
       alignItems: 'center',
       marginTop: 120,
     }}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Sign up</Text>
 
       <TextInput
         control={control}
@@ -99,4 +100,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginScreen;
+export default SignUpScreen;

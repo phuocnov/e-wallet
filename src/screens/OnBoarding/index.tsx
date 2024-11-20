@@ -3,7 +3,7 @@ import { SafeScreen } from "@/components/templates";
 import { Text, View } from "react-native";
 import { ScreenTransition } from "react-native-reanimated";
 
-export default function OnBoarding(props: { goToLogin: () => void }) {
+export default function OnBoarding() {
   return (<SafeScreen style={{
     display: 'flex',
     alignItems: 'center'
@@ -29,7 +29,7 @@ export default function OnBoarding(props: { goToLogin: () => void }) {
     <Button
       title="Get started!"
       ButtonStyles={{ width: '80%' }}
-      onPress={() => { props.goToLogin() }}
+      onPress={() => { }}
     />
   </SafeScreen>);
 }

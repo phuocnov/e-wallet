@@ -8,7 +8,6 @@ import { ThemeProvider } from '@/theme';
 import ApplicationNavigator from '@/navigations/Application';
 import { store } from './reducers/store';
 import { Provider } from 'react-redux';
-import '@/translations';
 
 export const queryClient = new QueryClient();
 

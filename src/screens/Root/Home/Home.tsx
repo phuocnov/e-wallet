@@ -1,5 +1,6 @@
-import { useNavigation } from "@react-navigation/native";
-import { Button, Text, TouchableOpacity, View } from "react-native";
+/* eslint-disable react-native/no-inline-styles */
+import { useNavigation } from '@react-navigation/native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 function Home1() {
   // TODO: Replace Hide with icons and  make it clickable
@@ -30,7 +31,7 @@ function Home1() {
           <Text style={{
             fontSize: 20,
             color: 'black',
-            fontWeight: 'semibold'
+            fontWeight: 'semibold',
           }}>Số dư</Text>
           <View style={{
             flexDirection: 'row',
@@ -56,7 +57,7 @@ const ButtonList = () => {
   const buttonList = [
     {
       title: 'Nạp tiền',
-      onPress: () => { navigation.navigate('TransactionRoot') },
+      onPress: () => { navigation.navigate('TransactionRoot'); },
     },
     {
       title: 'Rút tiền',
@@ -69,7 +70,7 @@ const ButtonList = () => {
     {
       title: 'QR thanh toán',
       onPress: () => { },
-    }
+    },
   ];
   return (
     <View style={{
@@ -80,24 +81,24 @@ const ButtonList = () => {
       {buttonList.map((item, index) => (
         <TouchableOpacity
           key={index}
+          onPress={() => { item.onPress(); }}
           style={{
             alignItems: 'center',
             display: 'flex',
             width: 48,
-            gap: 4
+            gap: 4,
           }}
-          onPress={() => { item.onPress() }}
         >
           <View style={{
             width: 36,
             height: 36,
             borderRadius: 8,
             backgroundColor: 'white',
-          }}></View>
-          <Text style={{ fontSize: 8, textAlign: "center" }}>{item.title}</Text>
+          }} />
+          <Text style={{ fontSize: 8, textAlign: 'center' }}>{item.title}</Text>
         </TouchableOpacity>))}
     </View >
   );
-}
+};
 
 export default Home1;

@@ -1,7 +1,6 @@
 import Button from "@/components/atoms/Button";
 import { SafeScreen } from "@/components/templates";
 import { Text, View } from "react-native";
-import { ScreenTransition } from "react-native-reanimated";
 
 export default function OnBoarding() {
   return (<SafeScreen style={{

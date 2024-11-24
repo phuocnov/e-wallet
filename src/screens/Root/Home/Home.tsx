@@ -4,19 +4,24 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 function Home1() {
   // TODO: Replace Hide with icons and  make it clickable
-  const navigation = useNavigation();
   return (
-    <View style={{
-      flex: 1,
-      backgroundColor: '#8C98AA',
-      alignItems: 'center',
-    }}>
-      <Text style={{
-        fontSize: 20,
-        textAlign: 'center',
-        marginTop: 20,
-        color: 'black',
-      }}>HomeScreen</Text>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: '#8C98AA',
+        alignItems: 'center',
+      }}
+    >
+      <Text
+        style={{
+          fontSize: 20,
+          textAlign: 'center',
+          marginTop: 20,
+          color: 'black',
+        }}
+      >
+        HomeScreen
+      </Text>
       <View
         style={{
           width: '80%',
@@ -28,15 +33,21 @@ function Home1() {
         }}
       >
         <View>
-          <Text style={{
-            fontSize: 20,
-            color: 'black',
-            fontWeight: 'semibold',
-          }}>Số dư</Text>
-          <View style={{
-            flexDirection: 'row',
-            gap: 10,
-          }}>
+          <Text
+            style={{
+              fontSize: 20,
+              color: 'black',
+              fontWeight: 'semibold',
+            }}
+          >
+            Số dư
+          </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: 10,
+            }}
+          >
             <Text>800,000 VND</Text>
             <Text>Hide</Text>
           </View>
@@ -46,7 +57,6 @@ function Home1() {
           <ButtonList />
         </View>
       </View>
-
     </View>
   );
 }
@@ -57,31 +67,37 @@ const ButtonList = () => {
   const buttonList = [
     {
       title: 'Nạp tiền',
-      onPress: () => { navigation.navigate('TransactionRoot'); },
+      onPress: () => {
+        navigation.navigate('TransactionRoot');
+      },
     },
     {
       title: 'Rút tiền',
-      onPress: () => { },
+      onPress: () => {},
     },
     {
       title: 'Chuyển tiền',
-      onPress: () => { },
+      onPress: () => {},
     },
     {
       title: 'QR thanh toán',
-      onPress: () => { },
+      onPress: () => {},
     },
   ];
   return (
-    <View style={{
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      marginTop: 10,
-    }}>
+    <View
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10,
+      }}
+    >
       {buttonList.map((item, index) => (
         <TouchableOpacity
           key={index}
-          onPress={() => { item.onPress(); }}
+          onPress={() => {
+            item.onPress();
+          }}
           style={{
             alignItems: 'center',
             display: 'flex',
@@ -89,15 +105,18 @@ const ButtonList = () => {
             gap: 4,
           }}
         >
-          <View style={{
-            width: 36,
-            height: 36,
-            borderRadius: 8,
-            backgroundColor: 'white',
-          }} />
+          <View
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 8,
+              backgroundColor: 'white',
+            }}
+          />
           <Text style={{ fontSize: 8, textAlign: 'center' }}>{item.title}</Text>
-        </TouchableOpacity>))}
-    </View >
+        </TouchableOpacity>
+      ))}
+    </View>
   );
 };
 

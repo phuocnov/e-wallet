@@ -4,6 +4,7 @@ import { useState } from 'react';
 import {
   Keyboard,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -21,6 +22,26 @@ function RequestTransactionScreen() {
   const options = [
     { icon: 'ACBIcon', label: 'ACB', description: 'Miễn phí thanh toán' },
     { icon: 'TPIcon', label: 'TP', description: 'Miễn phí thanh toán' },
+    {
+      icon: 'AGRIBANKIcon',
+      label: 'AGRIBANK',
+      description: 'Miễn phí thanh toán',
+    },
+    {
+      icon: 'BIDVIcon',
+      label: 'BIDV',
+      description: 'Miễn phí thanh toán',
+    },
+    {
+      icon: 'MBBANKIcon',
+      label: 'MBBANK',
+      description: 'Miễn phí thanh toán',
+    },
+    {
+      icon: 'VIETCOMBANKIcon',
+      label: 'VIETCOMBANK',
+      description: 'Miễn phí thanh toán',
+    },
   ];
 
   return (
@@ -47,46 +68,48 @@ function RequestTransactionScreen() {
             </View>
             <View style={styles.container}>
               <Text style={styles.title}>Chọn nguồn tiền</Text>
-              {options.map((option) => (
+              <ScrollView>
+                {options.map((option) => (
+                  <TouchableOpacity
+                    key={option.label}
+                    style={styles.optionContainer}
+                    onPress={() => setSelectedOption(option.label)}
+                  >
+                    <View style={styles.radioCircle}>
+                      {selectedOption === option.label && (
+                        <View style={styles.radioDot} />
+                      )}
+                    </View>
+                    <View style={styles.optionContent}>
+                      <View style={styles.optionTextContainer}>
+                        <Text style={styles.optionLabel}>{option.label}</Text>
+                        <Text style={styles.optionDescription}>
+                          {option.description}
+                        </Text>
+                      </View>
+                    </View>
+                    <Text style={styles.optionIcon}>{option.icon}</Text>
+                  </TouchableOpacity>
+                ))}
                 <TouchableOpacity
-                  key={option.label}
+                  onPress={() => {
+                    navigation.navigate('AddBankLinkScreen');
+                  }}
                   style={styles.optionContainer}
-                  onPress={() => setSelectedOption(option.label)}
                 >
-                  <View style={styles.radioCircle}>
-                    {selectedOption === option.label && (
-                      <View style={styles.radioDot} />
-                    )}
-                  </View>
                   <View style={styles.optionContent}>
                     <View style={styles.optionTextContainer}>
-                      <Text style={styles.optionLabel}>{option.label}</Text>
+                      <Text style={styles.optionLabel}>
+                        Thêm liên kết ngân hàng
+                      </Text>
                       <Text style={styles.optionDescription}>
-                        {option.description}
+                        Liên kết ngân hàng có sẵn
                       </Text>
                     </View>
                   </View>
-                  <Text style={styles.optionIcon}>{option.icon}</Text>
+                  <Text style={styles.optionIcon}>icon</Text>
                 </TouchableOpacity>
-              ))}
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('AddBankLinkScreen');
-                }}
-                style={styles.optionContainer}
-              >
-                <View style={styles.optionContent}>
-                  <View style={styles.optionTextContainer}>
-                    <Text style={styles.optionLabel}>
-                      Thêm liên kết ngân hàng
-                    </Text>
-                    <Text style={styles.optionDescription}>
-                      Liên kết ngân hàng có sẵn
-                    </Text>
-                  </View>
-                </View>
-                <Text style={styles.optionIcon}>icon</Text>
-              </TouchableOpacity>
+              </ScrollView>
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('ConfirmTransaction');
@@ -167,7 +190,7 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-    height: 'auto',
+    height: 400,
     marginTop: 38,
     flexDirection: 'column',
     borderRadius: 10,

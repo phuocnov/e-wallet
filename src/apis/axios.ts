@@ -4,7 +4,7 @@ import { MMKV } from 'react-native-mmkv';
 const store = new MMKV();
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://dce0-42-118-145-150.ngrok-free.app',
   headers: {
     'Content-Type': 'application/json',
   },

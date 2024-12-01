@@ -1,12 +1,13 @@
+import { Login } from '@/reducers/authSlice';
+import { useAppDispatch } from '@/reducers/hooks';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  emailOrPhonenumber: yup
+  usernameOrPhoneNumber: yup
     .string()
-    .required('Email or phone number is required.')
-    .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Must be a valid email.'),
+    .required('user name or  number is required.'),
   password: yup
     .string()
     .required('Password is required.')
@@ -14,6 +15,8 @@ const schema = yup.object().shape({
 });
 
 function useLogin() {
+  const dispatch = useAppDispatch();
+
   const {
     control,
     handleSubmit,
@@ -21,13 +24,13 @@ function useLogin() {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      emailOrPhonenumber: '',
+      usernameOrPhoneNumber: '',
       password: '',
     },
   });
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    dispatch(Login(data));
   };
 
   return {

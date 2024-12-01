@@ -47,82 +47,87 @@ function RequestTransactionScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{ flex: 1 }}>
-          <View style={styles.headerContainer}>
-            <View style={styles.header}>
-              <BackButton />
-            </View>
-          </View>
 
-          <View style={styles.mainContainer}>
-            <Text style={styles.titleText}>Nạp tiền vào</Text>
-            <View style={styles.inputContainer}>
-              <View>
-                <Text style={styles.inputLabel}>Nhập số tiền</Text>
-                <TextInput keyboardType="numeric" style={styles.textInput} />
-                <View style={styles.balanceContainer}>
-                  <Text style={styles.balanceText}>Số dư: 300.000 VND</Text>
-                  <Text>hideIcon</Text>
-                </View>
+        <ScrollView>
+          <View style={{
+            flex: 1,
+          }}>
+
+            <View style={styles.headerContainer}>
+              <View style={styles.header}>
+                <BackButton />
               </View>
             </View>
-            <View style={styles.container}>
-              <Text style={styles.title}>Chọn nguồn tiền</Text>
-              <ScrollView>
-                {options.map((option) => (
+            <View style={styles.mainContainer}>
+              <Text style={styles.titleText}>Nạp tiền vào</Text>
+              <View style={styles.inputContainer}>
+                <View>
+                  <Text style={styles.inputLabel}>Nhập số tiền</Text>
+                  <TextInput keyboardType="numeric" style={styles.textInput} />
+                  <View style={styles.balanceContainer}>
+                    <Text style={styles.balanceText}>Số dư: 300.000 VND</Text>
+                    <Text>hideIcon</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.container}>
+                <Text style={styles.title}>Chọn nguồn tiền</Text>
+                <ScrollView>
+                  {options.map((option) => (
+                    <TouchableOpacity
+                      key={option.label}
+                      style={styles.optionContainer}
+                      onPress={() => setSelectedOption(option.label)}
+                    >
+                      <View style={styles.radioCircle}>
+                        {selectedOption === option.label && (
+                          <View style={styles.radioDot} />
+                        )}
+                      </View>
+                      <View style={styles.optionContent}>
+                        <View style={styles.optionTextContainer}>
+                          <Text style={styles.optionLabel}>{option.label}</Text>
+                          <Text style={styles.optionDescription}>
+                            {option.description}
+                          </Text>
+                        </View>
+                      </View>
+                      <Text style={styles.optionIcon}>{option.icon}</Text>
+                    </TouchableOpacity>
+                  ))}
                   <TouchableOpacity
-                    key={option.label}
+                    onPress={() => {
+                      navigation.navigate('AddBankLinkScreen');
+                    }}
                     style={styles.optionContainer}
-                    onPress={() => setSelectedOption(option.label)}
                   >
-                    <View style={styles.radioCircle}>
-                      {selectedOption === option.label && (
-                        <View style={styles.radioDot} />
-                      )}
-                    </View>
                     <View style={styles.optionContent}>
                       <View style={styles.optionTextContainer}>
-                        <Text style={styles.optionLabel}>{option.label}</Text>
+                        <Text style={styles.optionLabel}>
+                          Thêm liên kết ngân hàng
+                        </Text>
                         <Text style={styles.optionDescription}>
-                          {option.description}
+                          Liên kết ngân hàng có sẵn
                         </Text>
                       </View>
                     </View>
-                    <Text style={styles.optionIcon}>{option.icon}</Text>
+                    <Text style={styles.optionIcon}>icon</Text>
                   </TouchableOpacity>
-                ))}
+                </ScrollView>
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate('AddBankLinkScreen');
+                    navigation.navigate('ConfirmTransaction');
                   }}
-                  style={styles.optionContainer}
+                  style={styles.button}
                 >
-                  <View style={styles.optionContent}>
-                    <View style={styles.optionTextContainer}>
-                      <Text style={styles.optionLabel}>
-                        Thêm liên kết ngân hàng
-                      </Text>
-                      <Text style={styles.optionDescription}>
-                        Liên kết ngân hàng có sẵn
-                      </Text>
-                    </View>
-                  </View>
-                  <Text style={styles.optionIcon}>icon</Text>
+                  <Text style={styles.buttonText}>Nạp tiền</Text>
                 </TouchableOpacity>
-              </ScrollView>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('ConfirmTransaction');
-                }}
-                style={styles.button}
-              >
-                <Text style={styles.buttonText}>Nạp tiền</Text>
-              </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
+        </ScrollView>
       </TouchableWithoutFeedback>
-    </SafeAreaView>
+    </SafeAreaView >
   );
 }
 

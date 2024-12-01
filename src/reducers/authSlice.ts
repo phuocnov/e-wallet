@@ -57,12 +57,11 @@ export const Login =
     dispatch(startLoading());
     try {
       const data = await LoginAPI(payload);
-
       const store = new MMKV();
-      store.set('token', data.accessToken);
+      store.set('token', data.data.token);
 
-      const user = await CurrentUserAPI();
-      dispatch(loginSuccess(user));
+      const res = await CurrentUserAPI();
+      dispatch(loginSuccess(res.data));
     } catch {
       dispatch(loginFail());
     }

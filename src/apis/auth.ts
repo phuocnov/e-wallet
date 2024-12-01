@@ -4,28 +4,20 @@ import axiosInstance from './axios';
 
 export type LoginAPIPayload = {
   password: string;
-  phonenumber: string;
+  usernameOrPhoneNumber: string;
 };
 
 export const CurrentUserAPI = async () => {
-  return {
-    user: {
-      id: 1,
-      username: 'admin',
-      email: '',
-    },
-  };
+  const response: AxiosResponse = await axiosInstance.get('/users/profile');
+  return response.data;
 };
 
 export const LoginAPI = async (payload: LoginAPIPayload) => {
-  // const response: AxiosResponse = await axiosInstance.post(
-  //   '/auth/login',
-  //   payload,
-  // );
-  // return response.data;
-  return {
-    accessToken: '123',
-  };
+  const response: AxiosResponse = await axiosInstance.post(
+    '/users/auth/login',
+    payload,
+  );
+  return response.data;
 };
 
 export const SignupAPI = async (payload: LoginAPIPayload) => {

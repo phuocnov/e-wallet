@@ -22,16 +22,14 @@ const AuthStack = createStackNavigator<AuthStackParamList>();
 const AuthenticatedStack = () => {
   return (
     <AuthStack.Navigator>
-      <AuthStack.Screen component={OnBoarding} name={AuthPaths.Onboarding} />
       <AuthStack.Screen component={LoginScreen} name={AuthPaths.Login} />
       <AuthStack.Screen component={SignUpScreen} name={AuthPaths.Signup} />
+      <AuthStack.Screen component={OnBoarding} name={AuthPaths.Onboarding} />
     </AuthStack.Navigator>
   );
 }
 
-const Tab = createBottomTabNavigator();
 function ApplicationNavigator() {
-  const { variant, navigationTheme } = useTheme();
   const dispatch = useAppDispatch();
   const { isAuthenticated, isLoading, user } = useAppSelector(state => state.AuthSlice);
   const [isOnBoarding, setIsOnBoarding] = useState(false);
@@ -41,7 +39,7 @@ function ApplicationNavigator() {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer theme={navigationTheme}>
+      <NavigationContainer>
         {isOnBoarding ? <OnBoarding />
           : isAuthenticated ? <RootTabNavigator /> : <AuthenticatedStack />
         }

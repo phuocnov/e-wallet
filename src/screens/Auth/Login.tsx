@@ -24,11 +24,10 @@ function LoginScreen() {
 
       <TextInput
         control={control}
-        name="emailOrPhonenumber"
+        name="usernameOrPhoneNumber"
         placeholder="Username"
         style={styles.textInput}
       />
-      {errors.emailOrPhonenumber && <Text style={styles.errorMessage}>{errors.emailOrPhonenumber.message}</Text>}
 
       <TextInput
         control={control}

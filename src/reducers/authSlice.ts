@@ -1,10 +1,10 @@
 import type { AppDispatch } from './store';
-import type { LoginAPIPayload } from '@/apis/auth';
+import type { LoginAPIPayload, SignupAPIPayload } from '@/apis/auth';
 
 import { createSlice } from '@reduxjs/toolkit';
 import { MMKV } from 'react-native-mmkv';
 
-import { CurrentUserAPI, LoginAPI } from '@/apis/auth';
+import { CurrentUserAPI, LoginAPI, SignupAPI } from '@/apis/auth';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import { Alert } from 'react-native';
 
@@ -62,6 +62,17 @@ export const Login =
 
       const res = await CurrentUserAPI();
       dispatch(loginSuccess(res.data));
+    } catch {
+      dispatch(loginFail());
+    }
+  };
+
+export const Signup =
+  (payload: SignupAPIPayload) => async (dispatch: AppDispatch) => {
+    dispatch(startLoading());
+    try {
+      await SignupAPI(payload);
+      Alert.alert('Signup Success');
     } catch {
       dispatch(loginFail());
     }

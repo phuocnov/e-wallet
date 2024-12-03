@@ -3,12 +3,15 @@ import TextInput from '@/components/atoms/TextInput';
 import { SafeScreen } from '@/components/templates';
 import useBiometricAuth from '@/hooks/biomertricAuth';
 import useLoginForm from '@/hooks/forms/useLoginForm';
+import { AuthPaths } from '@/navigations/paths';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 function LoginScreen() {
   const { control, errors, handleSubmit, onSubmit } = useLoginForm();
   const { createSignature } = useBiometricAuth();
+  const navigation = useNavigation();
 
   //TODO: add navigation
   const handleGotoSignup = () => { };
@@ -18,7 +21,6 @@ function LoginScreen() {
     <SafeScreen style={{
       display: 'flex',
       alignItems: 'center',
-      marginTop: 120,
     }}>
       <Text style={styles.title}>Login</Text>
 
@@ -52,7 +54,11 @@ function LoginScreen() {
           <Text style={{
             color: '#5F94E4',
             fontWeight: 'bold',
-          }} onPress={handleGotoSignup}> Sign up</Text>
+          }} 
+          onPress={() => {
+            navigation.navigate(AuthPaths.Signup);
+          }}
+          > Sign up</Text>
         </View>
       </View>
 
@@ -76,7 +82,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 48,
     fontWeight: 'bold',
-    marginBottom: 120,
+    marginVertical: 80,
     color: '#5F94E4',
 
   },

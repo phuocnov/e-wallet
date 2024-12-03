@@ -47,12 +47,12 @@ function RequestTransactionScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-
         <ScrollView>
-          <View style={{
-            flex: 1,
-          }}>
-
+          <View
+            style={{
+              flex: 1,
+            }}
+          >
             <View style={styles.headerContainer}>
               <View style={styles.header}>
                 <BackButton />
@@ -127,7 +127,7 @@ function RequestTransactionScreen() {
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>
-    </SafeAreaView >
+    </SafeAreaView>
   );
 }
 

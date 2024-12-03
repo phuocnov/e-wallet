@@ -15,6 +15,7 @@ import LoginScreen from '@/screens/Auth/Login';
 import OnBoarding from '@/screens/OnBoarding';
 import SignUpScreen from '@/screens/Auth/Signup';
 import { RootTabNavigator } from '@/screens/Root';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const AuthStack = createStackNavigator<AuthStackParamList>();
 

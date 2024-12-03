@@ -7,13 +7,6 @@ export type LoginAPIPayload = {
   usernameOrPhoneNumber: string;
 };
 
-export type SignupAPIPayload = {
-  email: string;
-  password: string;
-  phone: string;
-  username: string;
-};
-
 export const CurrentUserAPI = async () => {
   const response: AxiosResponse = await axiosInstance.get('/users/profile');
   return response.data;
@@ -27,9 +20,9 @@ export const LoginAPI = async (payload: LoginAPIPayload) => {
   return response.data;
 };
 
-export const SignupAPI = async (payload: SignupAPIPayload) => {
+export const SignupAPI = async (payload: LoginAPIPayload) => {
   const response: AxiosResponse = await axiosInstance.post(
-    'users/auth/register',
+    '/auth/signup',
     payload,
   );
 

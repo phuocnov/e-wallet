@@ -1,8 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
+import { useAppSelector } from '@/reducers/hooks';
 import { useNavigation } from '@react-navigation/native';
+import { t } from 'i18next';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-function Home1() {
+function Home() {
+  const { user, wallets } = useAppSelector(state => state.AuthSlice)
   // TODO: Replace Hide with icons and  make it clickable
   return (
     <View
@@ -12,16 +15,6 @@ function Home1() {
         alignItems: 'center',
       }}
     >
-      <Text
-        style={{
-          fontSize: 20,
-          textAlign: 'center',
-          marginTop: 20,
-          color: 'black',
-        }}
-      >
-        HomeScreen
-      </Text>
       <View
         style={{
           width: '80%',
@@ -48,8 +41,7 @@ function Home1() {
               gap: 10,
             }}
           >
-            <Text>800,000 VND</Text>
-            <Text>Hide</Text>
+            <BalanceList />
           </View>
         </View>
 
@@ -73,15 +65,15 @@ const ButtonList = () => {
     },
     {
       title: 'Rút tiền',
-      onPress: () => {},
+      onPress: () => { },
     },
     {
       title: 'Chuyển tiền',
-      onPress: () => {},
+      onPress: () => { },
     },
     {
       title: 'QR thanh toán',
-      onPress: () => {},
+      onPress: () => { },
     },
   ];
   return (
@@ -120,4 +112,41 @@ const ButtonList = () => {
   );
 };
 
-export default Home1;
+
+const BalanceList = () => {
+
+  const { wallets } = useAppSelector(state => state.AuthSlice)
+  return (
+    <View
+      style={{
+        width: '100%',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 10,
+      }}
+    >
+      <Text
+        style={{
+          fontSize: 20,
+          color: 'black',
+          fontWeight: 'semibold',
+        }}
+      >
+        Danh sách số dư
+      </Text>
+      {wallets?.map((wallet, index) => (
+        <View
+          key={index}
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Text>{wallet.currency}</Text>
+          <Text>{wallet.balance}</Text>
+        </View>
+      ))}
+    </View>
+  );
+}
+export default Home;

@@ -8,22 +8,33 @@ import { CurrentUserAPI, LoginAPI } from '@/apis/auth';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import { Alert } from 'react-native';
 
-export type Usertype = {
-  email: string;
+export type WalletType = {
   id: number;
+  balance: number;
+  currency: string;
+}
+
+export type UserType = {
   username: string;
+  id: number;
+  email: string;
+  phone: string;
+
+
 };
 
 export interface AuthState {
   isAuthenticated: boolean;
   isLoading: boolean;
-  user: Usertype;
+  user: UserType;
+  wallets: WalletType[];
 }
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: null,
+    user: null as UserType | null,
+    wallets: [] as WalletType[],
     isAuthenticated: false,
     isLoading: false,
   },
@@ -34,7 +45,8 @@ const authSlice = createSlice({
     loginSuccess: (state, action) => {
       state.isAuthenticated = true;
       state.isLoading = false;
-      state.user = action.payload;
+      state.user = action.payload.data.user;
+      state.wallets = action.payload.data.wallets;
     },
     loginFail: (state) => {
       state.isLoading = false;
@@ -91,11 +103,12 @@ export const CheckAuth = async (dispatch: AppDispatch) => {
   try {
     const store = new MMKV();
     if (store.getAllKeys().includes('token')) {
-      dispatch(logOut());
+      console.log('token', store.getString('token'));
+
+      const user = await CurrentUserAPI();
+      dispatch(loginSuccess(user));
       return;
     }
-    const user = await CurrentUserAPI();
-    dispatch(loginSuccess(user));
   } catch {
     dispatch(loginFail());
   }
